@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { IPokemon, RootState } from "../redux/slices/pokemon.interface";
 import { useEffect, useState } from "react";
 import { fetchPokemons } from "../redux/slices/pokemonSlice";
+import { setCurrentPokemonUrl } from "../redux/slices/pokemonImagenSlice";
 import { AppDispatch } from "../redux/store";
-import { Button } from "react-bootstrap";
 import Pagination from './Pagination';
 import PokemonCard from "./PokemonCard";
 
@@ -11,8 +11,7 @@ import PokemonCard from "./PokemonCard";
 
 function ListaPokemon() {
     const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20");
-    //obtner imagen
-    const [imagen, setImagen] = useState("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png");
+
     //lee el parametro de la ruta 
     debugger
 
@@ -52,10 +51,13 @@ function ListaPokemon() {
 
     const handleClick = (event: { detail: any; } | undefined, url: string) => {
         console.log(event?.detail, url);
-        setImagen("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/65.png"); //getImagen();
+
+
+
         switch (event?.detail) {
             case 1: {
                 console.log('single click');
+                dispatch(setCurrentPokemonUrl(url))
                 break;
             }
             case 2: {
