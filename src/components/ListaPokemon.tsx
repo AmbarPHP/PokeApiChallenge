@@ -4,22 +4,36 @@ import { useEffect, useState } from "react";
 import { fetchPokemons } from "../redux/slices/pokemonSlice";
 import { AppDispatch } from "../redux/store";
 import { Button } from "react-bootstrap";
+import Pagination from './Pagination';
+
 
 
 function ListaPokemon() {
+    const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20");
+    //lee el parametro de la ruta 
+    debugger
+
+
 
     const dispatch = useDispatch<AppDispatch>();
     const pokemonList = useSelector((state: RootState) => state.pokemons.pokemonData);
+
+
+    const [prev, setPrev] = useState("");
+    const [next, setNext] = useState("");
+
+
     const load = useSelector((state: RootState) => state.pokemons.loading);
     const error = useSelector((state: RootState) => state.pokemons.error);
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        console.log("first")
-        dispatch(fetchPokemons());
-        console.log("then")
+        if (url) {
+            dispatch(fetchPokemons(url));
+        }
 
-    }, [dispatch]
+
+    }, [dispatch, url]
     );
 
 
@@ -27,6 +41,8 @@ function ListaPokemon() {
     useEffect(() => {
         if (pokemonList.results && pokemonList.results.length > 0)
             setLoaded(true);
+        setPrev(pokemonList.previous);
+        setNext(pokemonList.next);
     }, [pokemonList.results]
     );
 
@@ -66,7 +82,9 @@ function ListaPokemon() {
                     ))}
             </div>
 
+            <Pagination setUrl={setUrl} prev={prev} next={next} >
 
+            </Pagination>
         </div>
     );
 }
