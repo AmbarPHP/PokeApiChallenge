@@ -1,11 +1,20 @@
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
+//fetching product using build in thunk on toolkit
+export const fetchPokemons = createAsyncThunk(
+    'pokemon/fetchPokemons', // Corrected namespace 'pokemon'
+    async () => {
+        debugger
+        const data = await axios.get("https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20")
+            .then((res) => res.data);
+        return data;
+    }
+);
 
 const initialState = {
-    pokemonData: [],
+    pokemonData: {},
     loading: false,
     error: ''
 };
@@ -18,10 +27,9 @@ const pokemonSlice = createSlice({
         builder
             .addCase(fetchPokemons.pending, (state) => {
                 state.loading = true;
-                state.error = '';
+                state.error = "";
             })
             .addCase(fetchPokemons.fulfilled, (state, action) => {
-
                 state.loading = false;
                 state.pokemonData = action.payload;
             })
@@ -32,19 +40,4 @@ const pokemonSlice = createSlice({
     },
 });
 
-//fetching product using build in thunk on toolkit
-export const fetchPokemons = createAsyncThunk(
-    'products/fetchProducts', // Corrected namespace 'product'
-    async () => {
-        const data = await axios.get("https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20")
-            .then((res) => res.data);
-
-        return data;
-    }
-);
-
-
-
 export default pokemonSlice.reducer;
-
-

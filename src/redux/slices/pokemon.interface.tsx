@@ -7,12 +7,12 @@ export interface IPokemonList {
     count: number;
     next: string;
     previous: string;
-    result: IPokemon[];
+    results: IPokemon[];
 }
 
 export interface RootState {
-    pokemon: {
-        pokemonData: IPokemon[];
+    pokemons: {
+        pokemonData: IPokemonList;
         loading: boolean;
         error: string;
     };
