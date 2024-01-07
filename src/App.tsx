@@ -3,13 +3,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 
-import PaginatedDataComponent from "./components/Pagination2";
+
 const url = "https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20";
 
 function App() {
   const routes = [
     { path: "/", component: <Home /> },
-    { path: "/pagination", component: <PaginatedDataComponent data={url} /> },
+
     { path: "/pokemon/:name", component: <Home /> }
 
 
