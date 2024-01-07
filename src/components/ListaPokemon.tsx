@@ -5,11 +5,14 @@ import { fetchPokemons } from "../redux/slices/pokemonSlice";
 import { AppDispatch } from "../redux/store";
 import { Button } from "react-bootstrap";
 import Pagination from './Pagination';
+import PokemonCard from "./PokemonCard";
 
 
 
 function ListaPokemon() {
     const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20");
+    //obtner imagen
+    const [imagen, setImagen] = useState("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png");
     //lee el parametro de la ruta 
     debugger
 
@@ -21,6 +24,7 @@ function ListaPokemon() {
 
     const [prev, setPrev] = useState("");
     const [next, setNext] = useState("");
+
 
 
     const load = useSelector((state: RootState) => state.pokemons.loading);
@@ -48,6 +52,7 @@ function ListaPokemon() {
 
     const handleClick = (event: { detail: any; } | undefined, url: string) => {
         console.log(event?.detail, url);
+        setImagen("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/65.png"); //getImagen();
         switch (event?.detail) {
             case 1: {
                 console.log('single click');
@@ -73,10 +78,10 @@ function ListaPokemon() {
                 {pokemonList.results && pokemonList.results.length > 0 &&
                     pokemonList.results.map((data: IPokemon) => (
                         <div key={data.name} className="col-sm-6 col-md-6 col-lg-6 justify-content-center p-2 my-2" style={{ backgroundColor: "#45aa87" }}>
-                            {/* <PokemonCard product={data} /> */}
-                            <Button className="btn  btn-primary" onClick={(event) => handleClick(event, data.url)} >
+                            <PokemonCard data={data} handleClick={handleClick} />
+                            {/*  <Button className="btn  btn-primary" onClick={(event) => handleClick(event, data.url)} >
                                 {data.name}
-                            </Button>
+                            </Button> */}
 
                         </div>
                     ))}
