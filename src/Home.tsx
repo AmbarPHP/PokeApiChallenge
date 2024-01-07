@@ -12,10 +12,10 @@ function Home() {
                 <div className="col-6  bg-succes ">Vista</div>
                 <div className="col-6 "><ListaPokemon></ListaPokemon></div>
             </div>
-            <div className="row">
+            {/*   <div className="row">
                 <Pagination></Pagination>
 
-            </div>
+            </div> */}
         </div>
     )
 }

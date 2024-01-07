@@ -5,10 +5,11 @@ import axios from "axios";
 //fetching product using build in thunk on toolkit
 export const fetchPokemons = createAsyncThunk(
     'pokemon/fetchPokemons', // Corrected namespace 'pokemon'
-    async () => {
+    async (url: string) => {
         debugger
-        const data = await axios.get("https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20")
+        const data = await axios.get(url)
             .then((res) => res.data);
+
         return data;
     }
 );
