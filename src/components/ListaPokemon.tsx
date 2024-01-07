@@ -31,8 +31,8 @@ function ListaPokemon() {
     );
 
     const handleClick = (event: { detail: any; } | undefined, url: string) => {
-        console.log(event.detail, url);
-        switch (event.detail) {
+        console.log(event?.detail, url);
+        switch (event?.detail) {
             case 1: {
                 console.log('single click');
                 break;
@@ -52,19 +52,20 @@ function ListaPokemon() {
     return (
         <div className="container">
             <h1>PokemonList</h1>
-            <div className="row p-2 bd-highlight justify-content-center">
+            <div className="d-flex flex-row bg-primary  flex-wrap align-items-stretch p-2  justify-content-between" >
 
                 {pokemonList.results && pokemonList.results.length > 0 &&
                     pokemonList.results.map((data: IPokemon) => (
-                        <div key={data.name} className="col-12 col-sm-6 col-md-4 col-lg-3 justify-content-start">
+                        <div key={data.name} className="col-sm-6 col-md-6 col-lg-6 justify-content-center p-2 my-2" style={{ backgroundColor: "#45aa87" }}>
                             {/* <PokemonCard product={data} /> */}
-                            <Button onClick={(event) => handleClick(event, data.url)} >
+                            <Button className="btn  btn-primary" onClick={(event) => handleClick(event, data.url)} >
                                 {data.name}
                             </Button>
 
                         </div>
                     ))}
             </div>
+
 
         </div>
     );
