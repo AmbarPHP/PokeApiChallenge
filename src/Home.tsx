@@ -1,8 +1,9 @@
 import React from 'react'
+import ListaPokemon from './components/ListaPokemon';
 
 function Home() {
     return (
-        <div>Home</div>
+        <div><ListaPokemon></ListaPokemon></div>
     )
 }
 
