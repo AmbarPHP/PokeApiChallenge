@@ -1,6 +1,7 @@
 
 import ListaPokemon from './components/ListaPokemon';
 import Pagination from './components/Pagination';
+import PokemonImagen from './components/PokemonImagen';
 
 function Home() {
 
@@ -9,7 +10,7 @@ function Home() {
         <div className='Container'>
             <div className="row align-items-center">
 
-                <div className="col-6  bg-succes ">Vista</div>
+                <div className="col-6  bg-succes "><PokemonImagen></PokemonImagen></div>
                 <div className="col-6 "><ListaPokemon></ListaPokemon></div>
             </div>
             {/*   <div className="row">
