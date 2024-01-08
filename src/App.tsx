@@ -13,6 +13,7 @@ const url = "https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20";
 function App() {
   const routes = [
     { path: "/pokemon-list/", component: <Home /> },
+    { path: "/", component: <Home /> },
     { path: "single-pokemon/", component: <PokemonDetailView /> }
 
 
