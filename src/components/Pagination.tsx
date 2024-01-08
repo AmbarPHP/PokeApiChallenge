@@ -27,7 +27,11 @@ function Pagination({ setUrl, prev, next }: IPagination) {
         if (next) {
 
             const offset = extraerOffset(next);
-            if (offset != undefined && offset >= 140) {
+            if (offset === 140) {
+                alert("cambiar url");
+                setUrl("https://pokeapi.co/api/v2/pokemon/?offset=140&limit=11");
+            }
+            if (offset != undefined && offset === 140) {
                 setToggleButtonNext(false);
             }
             else {

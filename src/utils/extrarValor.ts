@@ -20,3 +20,4 @@ export function extraerOffset(url) {
     // Si no se encuentra 'offset=' en la URL, devuelve null o algún valor que indique que el offset no está presente
     return null;
 }
+
