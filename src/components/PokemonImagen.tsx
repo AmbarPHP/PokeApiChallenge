@@ -15,22 +15,25 @@ function PokemonImagen() {
 
     const dispatch = useDispatch<AppDispatch>();
     //  variable de estado llamada 'currentPokemonUrl' que contiene la URL
-    const datos = useSelector((state: RootState) => state.imagen.singlePokemonData);
-    const tempurl = useSelector((state: RootState) => state.imagen.currentPokemonUrl);
-    //setUrl(tempurl);
 
+    const tempurl = useSelector((state: RootState) => state.imagen.currentPokemonUrl);
+    const datos = useSelector((state: RootState) => state.imagen.singlePokemonData);
 
     useEffect(() => {
         debugger
-
         dispatch(fetchPokemonImagen(tempurl));
-        setData(datos);
-        console.log(datos.sprite.front_default);
-    }, [dispatch]
+    }, [dispatch, tempurl]
     );
+
+    useEffect(() => {
+        if (datos?.sprites?.front_default) {
+            setImagen(datos.sprites.front_default);
+        }
+    }, [datos, imagen]);
+
+
     return (
         <div>
-            <img src={imagen} alt="" className="img-fluid " style={{ height: "100vh" }} />
             <img src={imagen} alt="" className="img-fluid " style={{ height: "100vh" }} />
         </div>
     )

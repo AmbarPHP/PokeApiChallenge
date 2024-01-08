@@ -4,13 +4,14 @@ import axios from "axios";
 
 //fetching product using build in thunk on toolkit
 export const fetchPokemonImagen = createAsyncThunk(
-    'currentPokemon/fetchPokemonImagen', // Corrected namespace 'pokemon'
+    'imagen/fetchPokemonImagen', // Corrected namespace 'pokemon'
     async (url: string) => {
-        debugger
+
         const data = await axios.get(url)
             .then((res) => res.data);
-
+        debugger
         return data;
+
     }
 );
 
@@ -22,7 +23,7 @@ const initialState = {
 };
 
 const pokemonImagenSlice = createSlice({
-    name: 'currentPokemon',
+    name: 'imagen',
     initialState,
     reducers: {
         setCurrentPokemonUrl(state, action) {
