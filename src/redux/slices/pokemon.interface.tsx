@@ -11,7 +11,7 @@ export interface IPokemonList {
 }
 
 export interface RootState {
-    pokemons: {
+    pokemon: {
         pokemonData: IPokemonList;
         loading: boolean;
         error: string;

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IPokemon, RootState } from "../redux/slices/pokemon.interface";
 import { useEffect, useState } from "react";
 import { fetchPokemons } from "../redux/slices/pokemonSlice";
-import { setCurrentPokemonUrl } from "../redux/slices/pokemonImagenSlice";
+
 import { AppDispatch } from "../redux/store";
 import Pagination from './Pagination';
 import PokemonCard from "./PokemonCard";
@@ -15,10 +15,8 @@ function ListaPokemon() {
     //lee el parametro de la ruta 
     debugger
 
-
-
     const dispatch = useDispatch<AppDispatch>();
-    const pokemonList = useSelector((state: RootState) => state.pokemons.pokemonData);
+    const pokemonList = useSelector((state: RootState) => state.pokemon.pokemonData);
 
 
     const [prev, setPrev] = useState("");
@@ -26,8 +24,8 @@ function ListaPokemon() {
 
 
 
-    const load = useSelector((state: RootState) => state.pokemons.loading);
-    const error = useSelector((state: RootState) => state.pokemons.error);
+    const load = useSelector((state: RootState) => state.pokemon.loading);
+    const error = useSelector((state: RootState) => state.pokemon.error);
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
@@ -49,26 +47,7 @@ function ListaPokemon() {
     }, [pokemonList.results]
     );
 
-    const handleClick = (event: { detail: any; } | undefined, url: string) => {
-        console.log(event?.detail, url);
 
-
-
-        switch (event?.detail) {
-            case 1: {
-                console.log('single click');
-                dispatch(setCurrentPokemonUrl(url))
-                break;
-            }
-            case 2: {
-                console.log('double click');
-                break;
-            }
-            default: {
-                break;
-            }
-        }
-    };
 
 
 
@@ -80,10 +59,8 @@ function ListaPokemon() {
                 {pokemonList.results && pokemonList.results.length > 0 &&
                     pokemonList.results.map((data: IPokemon) => (
                         <div key={data.name} className="col-sm-6 col-md-6 col-lg-6 justify-content-center p-2 my-2" style={{ backgroundColor: "#45aa87" }}>
-                            <PokemonCard data={data} handleClick={handleClick} />
-                            {/*  <Button className="btn  btn-primary" onClick={(event) => handleClick(event, data.url)} >
-                                {data.name}
-                            </Button> */}
+                            <PokemonCard data={data} />
+
 
                         </div>
                     ))}
