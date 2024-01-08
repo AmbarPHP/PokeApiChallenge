@@ -4,6 +4,7 @@ import { IPokemon } from '../redux/slices/pokemon.interface';
 import { setCurrentPokemonUrl } from "../redux/slices/pokemonImagenSlice";
 import { AppDispatch } from "../redux/store";
 import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 interface IParams {
     event: Event;
@@ -13,9 +14,8 @@ interface IPokemonCard {
     data: IPokemon;
 }
 
-
-
 function PokemonCard({ data }: IPokemonCard) {
+    const navigate = useNavigate();
 
     const dispatch = useDispatch<AppDispatch>();
 
@@ -30,7 +30,9 @@ function PokemonCard({ data }: IPokemonCard) {
                 break;
             }
             case 2: {
-                console.log('double click');
+                console.log('double click', data.name);
+
+                navigate("/single-pokemon/");
                 break;
             }
             default: {
