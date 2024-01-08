@@ -1,6 +1,9 @@
 
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./Home";
 import PokemonDetailView from "./PokemonDetailView";
 
@@ -9,7 +12,7 @@ const url = "https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20";
 
 function App() {
   const routes = [
-    { path: "pokemon-list/", component: <Home /> },
+    { path: "/pokemon-list/", component: <Home /> },
     { path: "single-pokemon/", component: <PokemonDetailView /> }
 
 
