@@ -12,8 +12,7 @@ import PokemonCard from "./PokemonCard";
 function ListaPokemon() {
     const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20");
 
-    //lee el parametro de la ruta 
-    debugger
+
 
     const dispatch = useDispatch<AppDispatch>();
     const pokemonList = useSelector((state: RootState) => state.pokemon.pokemonData);
