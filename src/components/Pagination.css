@@ -1,0 +1,10 @@
+.disable {
+    /* Estilos para el estado deshabilitado */
+    display: none;
+
+}
+
+.able {
+    /* Estilos para el estado habilitado */
+    display: block;
+}

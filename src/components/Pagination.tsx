@@ -1,5 +1,8 @@
 
 
+import { useState } from "react";
+import { extraerOffset } from "../utils/extrarValor";
+import './Pagination.css';
 
 interface IPagination {
     prev: string;
@@ -10,26 +13,37 @@ interface IPagination {
 function Pagination({ setUrl, prev, next }: IPagination) {
 
 
+    const [togleButtonNext, setToggleButtonNext] = useState(true);
 
     const handleClickPrev = () => {
-        //debugger
-        console.log(prev)
+
+        console.log("el previ", prev)
+
         setUrl(prev);
+
     }
     const handleClickNext = () => {
-        //debugger
-        console.log(next)
-        setUrl(next);
+        console.log("next ", next)
+        if (next) {
+
+            const offset = extraerOffset(next);
+            if (offset != undefined && offset >= 140) {
+                setToggleButtonNext(false);
+            }
+            else {
+                setToggleButtonNext(true);
+                setUrl(next);
+            }
+        }
     }
+
 
     return (
         <div className="row justify-content-center my-3">
-            <div className="col-2 text-primary h5">   <a onClick={handleClickPrev}>Prev </a></div>
+            <div className={`col-2 text-primary h5 `}> <a onClick={handleClickPrev}>Prev </a></div>
             <div className="col-2 ">
-
-
             </div>
-            <div className="col-2 text-primary h5"> <a onClick={handleClickNext}>Next </a></div>
+            <div className={`col-2 text-primary h5 ${togleButtonNext ? "able" : "disable"}`}> <a onClick={handleClickNext}>Next </a></div>
         </div >
     )
 }
