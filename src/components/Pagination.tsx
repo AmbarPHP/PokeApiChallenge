@@ -16,10 +16,12 @@ function Pagination({ setUrl, prev, next }: IPagination) {
     const [togleButtonNext, setToggleButtonNext] = useState(true);
 
     const handleClickPrev = () => {
-
+        const offset = extraerOffset(prev);
         console.log("el previ", prev)
 
-        setUrl(prev);
+        //setUrl(prev);
+        setUrl("https://pokeapi.co/api/v2/pokemon/?offset=" + offset + "&limit=20");
+
 
     }
     const handleClickNext = () => {
@@ -27,16 +29,16 @@ function Pagination({ setUrl, prev, next }: IPagination) {
         if (next) {
 
             const offset = extraerOffset(next);
-            if (offset === 140) {
+            if (offset != undefined && offset >= 140) {
                 alert("cambiar url");
                 setUrl("https://pokeapi.co/api/v2/pokemon/?offset=140&limit=11");
-            }
-            if (offset != undefined && offset === 140) {
+
                 setToggleButtonNext(false);
             }
             else {
                 setToggleButtonNext(true);
-                setUrl(next);
+                setUrl("https://pokeapi.co/api/v2/pokemon/?offset=" + offset + "&limit=20");
+                //setUrl(next);
             }
         }
     }
