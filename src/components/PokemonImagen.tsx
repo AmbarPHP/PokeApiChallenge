@@ -20,7 +20,7 @@ function PokemonImagen() {
     const datos = useSelector((state: RootState) => state.imagen.singlePokemonData);
 
     useEffect(() => {
-        debugger
+        //debugger
         dispatch(fetchPokemonImagen(tempurl));
     }, [dispatch, tempurl]
     );

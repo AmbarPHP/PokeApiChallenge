@@ -6,7 +6,7 @@ import axios from "axios";
 export const fetchPokemons = createAsyncThunk(
     'pokemon/fetchPokemons', // Corrected namespace 'pokemon'
     async (url: string) => {
-        debugger
+        //debugger
         const data = await axios.get(url)
             .then((res) => res.data);
 

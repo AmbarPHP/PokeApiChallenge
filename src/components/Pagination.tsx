@@ -12,12 +12,12 @@ function Pagination({ setUrl, prev, next }: IPagination) {
 
 
     const handleClickPrev = () => {
-        debugger
+        //debugger
         console.log(prev)
         setUrl(prev);
     }
     const handleClickNext = () => {
-        debugger
+        //debugger
         console.log(next)
         setUrl(next);
     }

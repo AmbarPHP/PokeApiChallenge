@@ -9,7 +9,7 @@ export const fetchPokemonImagen = createAsyncThunk(
 
         const data = await axios.get(url)
             .then((res) => res.data);
-        debugger
+        //debugger
         return data;
 
     }
@@ -28,7 +28,7 @@ const pokemonImagenSlice = createSlice({
     reducers: {
         setCurrentPokemonUrl(state, action) {
             console.log("enviar la url");
-            debugger;
+            //debugger;
             state.currentPokemonUrl = action.payload;
         },
 
