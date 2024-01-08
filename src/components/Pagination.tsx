@@ -23,13 +23,13 @@ function Pagination({ setUrl, prev, next }: IPagination) {
     }
 
     return (
-        <div className="row justify-content-center my-5">
-            <div className="col-2">   <a onClick={handleClickPrev}>Prev </a></div>
-            <div className="col-2">
+        <div className="row justify-content-center my-3">
+            <div className="col-2 text-primary h5">   <a onClick={handleClickPrev}>Prev </a></div>
+            <div className="col-2 ">
 
 
             </div>
-            <div className="col-2"> <a onClick={handleClickNext}>Next </a></div>
+            <div className="col-2 text-primary h5"> <a onClick={handleClickNext}>Next </a></div>
         </div >
     )
 }

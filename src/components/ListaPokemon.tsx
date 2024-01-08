@@ -13,7 +13,7 @@ function ListaPokemon() {
     const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20");
 
     //lee el parametro de la ruta 
-    //debugger
+    debugger
 
     const dispatch = useDispatch<AppDispatch>();
     const pokemonList = useSelector((state: RootState) => state.pokemon.pokemonData);
@@ -50,12 +50,14 @@ function ListaPokemon() {
 
     return (
         <div className="container">
-            <h1>PokemonList</h1>
-            <div className="d-flex flex-row bg-primary  flex-wrap align-items-stretch p-2  justify-content-between" >
+            <h1 className="text-primary text-center mx-auto">PokemonList</h1>
+            <div className="d-flex flex-row   flex-wrap align-items-stretch p-2  justify-content-between" >
 
                 {pokemonList.results && pokemonList.results.length > 0 &&
                     pokemonList.results.map((data: IPokemon) => (
-                        <div key={data.name} className="col-sm-6 col-md-6 col-lg-6 justify-content-center p-2 my-2" style={{ backgroundColor: "#45aa87" }}>
+                        <div key={data.name}
+                            className="col-sm-6 col-md-6 col-lg-6 justify-content-center p-2 my-2"
+                        >
                             <PokemonCard data={data} />
                         </div>
                     ))}

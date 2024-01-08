@@ -41,9 +41,9 @@ function PokemonCard({ data }: IPokemonCard) {
         }
     };
     return (
-        <Button className="btn  btn-primary" onClick={(event) => handleClick(event, data.url)} >
+        <div className="bg-primary text-light text-center p-2" onClick={(event) => handleClick(event, data.url)} >
             {data.name}
-        </Button>
+        </div>
     )
 }
 
