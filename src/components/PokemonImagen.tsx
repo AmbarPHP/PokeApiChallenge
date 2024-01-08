@@ -10,28 +10,31 @@ function PokemonImagen() {
     //obtner imagen
     //https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png
     const [imagen, setImagen] = useState("https://cdn-0.imagensemoldes.com.br/wp-content/uploads/2020/04/Logo-Pokebola-Pok%C3%A9mon-PNG.png");
-    const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/22/");
-
-
+    const [pokemonUrl, setUrl] = useState("");
+    const [pokemonData, setData] = useState("");
 
     const dispatch = useDispatch<AppDispatch>();
     //  variable de estado llamada 'currentPokemonUrl' que contiene la URL
-    const pokemonUrl = useSelector((state: any) => state.currentPokemonUrl);
+    const datos = useSelector((state: RootState) => state.imagen.singlePokemonData);
+    const tempurl = useSelector((state: RootState) => state.imagen.currentPokemonUrl);
+    //setUrl(tempurl);
 
 
     useEffect(() => {
-        if (url) {
-            dispatch(fetchPokemonImagen(pokemonUrl));
-        }
+        debugger
 
-
-    }, [dispatch, url]
+        dispatch(fetchPokemonImagen(tempurl));
+        setData(datos);
+        console.log(datos.sprite.front_default);
+    }, [dispatch]
     );
     return (
         <div>
             <img src={imagen} alt="" className="img-fluid " style={{ height: "100vh" }} />
+            <img src={imagen} alt="" className="img-fluid " style={{ height: "100vh" }} />
         </div>
     )
 }
+
 
 export default PokemonImagen

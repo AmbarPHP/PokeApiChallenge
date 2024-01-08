@@ -16,6 +16,7 @@ export const fetchPokemonImagen = createAsyncThunk(
 
 const initialState = {
     currentPokemonUrl: "",
+    singlePokemonData: {},
     loading: false,
     error: ''
 };
@@ -39,7 +40,7 @@ const pokemonImagenSlice = createSlice({
             })
             .addCase(fetchPokemonImagen.fulfilled, (state, action) => {
                 state.loading = false;
-                state.currentPokemonUrl = action.payload;
+                state.singlePokemonData = action.payload;
             })
             .addCase(fetchPokemonImagen.rejected, (state, action) => {
                 state.loading = false;

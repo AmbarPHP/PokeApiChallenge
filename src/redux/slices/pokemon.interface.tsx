@@ -11,6 +11,7 @@ export interface IPokemonList {
 }
 
 export interface RootState {
+    imagen: any;
     pokemon: {
         pokemonData: IPokemonList;
         loading: boolean;
