@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux/slices/pokemon.interface";
 import { useNavigate } from 'react-router-dom';
-
+import banner from "../src/assets/banner.png";
+import { Button } from "react-bootstrap";
+import PokemonCarousel from "./components/PokemonCarousel";
 
 interface IAbilities {
     ability: {
@@ -12,6 +14,7 @@ interface IStats {
     stat: {
         name: string;
     }
+    base_stat: number;
 }
 
 interface IPokemonDetail {
@@ -25,44 +28,56 @@ function DetailView() {
 
     const pokemonDetail = useSelector((state: RootState) => state.imagen.singlePokemonData);
 
+    console.log("pokemon: ", pokemonDetail);
+
     const handleClick = () => {
         navigate("/pokemon-list/");
     }
 
 
     return (
-        <div className="d-flex flex-row">
-            <div className="flex-col col-6">
-                <img src={pokemonDetail.sprites.front_default} alt="" className="img-fluid " style={{ height: "100vh" }} />
-            </div>
-            <div className="flex-col col-6 mx-5" >
 
-                <h2 style={{ backgroundColor: "#876543", fontSize: "28px" }}>
-                    {pokemonDetail.name}
-                </h2>
 
-                <h4 onClick={handleClick}>regresar</h4>
-                <div className="abilities">
 
-                    <h2>abilities</h2>
-                    <div className="flex-col  ">
-                        {pokemonDetail && pokemonDetail.abilities.map((data: IAbilities) => {
-                            <div className="flex-col col-3" key={data.ability.name} >
-                                {data.ability.name}</div>
-                        })}</div >
-                    <h2>stats</h2>
-                    < div className="stats" >
-                        {pokemonDetail && pokemonDetail.stats.map((data: IStats) => {
-                            <div className="flex-col col-3" key={data.stat.name}>
-                                {data.stat.name}</div>
-                        })}
-                    </div >
+        <div className="container " style={{ fontSize: "1.5rem" }} >
+            <div className="row justify-content-center">
+                <div className="col-lg-6">
+                    <img src={banner} alt="Banner" className="img-fluid" style={{ height: "20vh", width: "100%" }} />
+                    <img src={pokemonDetail.sprites?.front_default} alt="Pokemon" className="img-fluid" style={{ height: "80vh" }} />
                 </div>
-
-
-
+                <div className="col-lg-6">
+                    <h1>{pokemonDetail.name}</h1>
+                    <p>Height: {pokemonDetail.height}</p>
+                    <p>Experience: {pokemonDetail.base_experience}</p>
+                    <button className="btn btn-primary" onClick={handleClick}>Return back to list</button>
+                    <div className="abilities my-5">
+                        <div>
+                            <h4>Abilities</h4>
+                        </div>
+                        <div className="d-flex flex-wrap">
+                            {pokemonDetail.abilities.map((data, index) => (
+                                <div className="badge bg-secondary m-1 p-4" key={index}>
+                                    {data.ability.name}
+                                </div>
+                            ))}
+                        </div>
+                        <div>
+                            <h4>Stats</h4>
+                        </div>
+                        <div>
+                            {pokemonDetail.stats.map((data, index) => (
+                                <div className="d-flex align-items-center" key={index}>
+                                    <div className="flex-grow-1">{data.stat.name}</div>
+                                    <div className="bg-primary text-white px-1 my-1 justify-content-start"
+                                        style={{ width: `${data.base_stat * 2}px` }} >{data.base_stat}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
     )
 }
 
