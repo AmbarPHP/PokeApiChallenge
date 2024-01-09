@@ -30,7 +30,7 @@ function Pagination({ setUrl, prev, next }: IPagination) {
 
             const offset = extraerOffset(next);
             if (offset != undefined && offset >= 140) {
-                alert("cambiar url");
+
                 setUrl("https://pokeapi.co/api/v2/pokemon/?offset=140&limit=11");
 
                 setToggleButtonNext(false);
