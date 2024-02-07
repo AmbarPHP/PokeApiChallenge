@@ -4,23 +4,32 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Home2 from "./pages/Home2";
 import Home from "./Home";
 import PokemonDetailView from "./PokemonDetailView";
 
 
 const url = "https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20";
 
+interface Routes {
+  path?: string;
+  component: React.ComponentType<any>;
+  collapse?: Route[];
+}
+
+
 function App() {
   const routes = [
     { path: "/pokemon-list/", component: <Home /> },
     { path: "/", component: <Home /> },
+    { path: "/home", component: <Home2 /> },
     { path: "single-pokemon/", component: <PokemonDetailView /> }
 
 
   ];
 
-  const getRoutes = (allRoutes) =>
-    allRoutes.map((route, index) => {
+  const getRoutes: React.ComponentType<any> = (allRoutes: Routes[]) =>
+    allRoutes.flatMap((route, index) => {
       if (route.collapse) {
         return getRoutes(route.collapse);
       }
