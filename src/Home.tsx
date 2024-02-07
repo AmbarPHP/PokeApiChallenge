@@ -1,5 +1,5 @@
 
-import ListaPokemon from './components/ListaPokemon';
+import ListaPokemon from './pages/ListaPokemon';
 import Pagination from './components/Pagination';
 import PokemonImagen from './components/PokemonImagen';
 
