@@ -20,7 +20,7 @@ interface Routes {
 
 function App() {
   const routes = [
-    { path: "/pokemon-list/", component: <Home /> },
+    { path: "/pokemons/", component: <Home /> },
     { path: "/", component: <Home /> },
     { path: "/home", component: <Home2 /> },
     { path: "single-pokemon/", component: <PokemonDetailView /> }
