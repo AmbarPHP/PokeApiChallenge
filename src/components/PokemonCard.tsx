@@ -20,7 +20,7 @@ function PokemonCard({ data }: IPokemonCard) {
     const dispatch = useDispatch<AppDispatch>();
 
     const handleClick = (event: { detail: any; } | undefined, url: string) => {
-        console.log(event?.detail, url);
+        //console.log(event?.detail, url);
 
 
         switch (event?.detail) {
