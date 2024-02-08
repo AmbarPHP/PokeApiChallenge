@@ -5,15 +5,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home2 from "./pages/Home2";
-import Home from "./Home";
-import PokemonDetailView from "./PokemonDetailView";
+import Home from "./pages/Home";
+import PokemonDetailView from "./components/PokemonDetailView";
 
 
-const url = "https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20";
+//const url = "https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20";
 
 interface Routes {
   path?: string;
   component: React.ComponentType<any>;
+  element: React.ComponentType<any>;
   collapse?: Route[];
 }
 

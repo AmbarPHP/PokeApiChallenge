@@ -9,7 +9,7 @@ export const fetchPokemonImagen = createAsyncThunk(
 
         const data = await axios.get(url)
             .then((res) => res.data);
-        //debugger
+
         return data;
 
     }
@@ -21,7 +21,7 @@ const initialState = {
     loading: false,
     error: ''
 };
-
+//el nombre del slice es imagen
 const pokemonImagenSlice = createSlice({
     name: 'imagen',
     initialState,

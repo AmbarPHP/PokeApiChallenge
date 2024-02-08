@@ -28,11 +28,22 @@ function ListaPokemon() {
     const error = useSelector((state: RootState) => state.pokemon.error);
     const [loaded, setLoaded] = useState(false);
 
+
     useEffect(() => {
-        if (url) {
-            dispatch(fetchPokemons(url));
+        const fetchPokemonData = async () => {
+            try {
+                if (url) {
+                    await dispatch(fetchPokemons(url));
+                }
+            }
+            catch (error) {
+                console.error("error fetching data", error)
+            }
         }
+        fetchPokemonData();
     }, [dispatch, url]);
+
+
 
 
 
@@ -60,7 +71,7 @@ function ListaPokemon() {
                 {pokemonList.results && pokemonList.results.length > 0 &&
                     pokemonList.results.map((data: IPokemon) => (
                         <div key={data.name}
-                            className="col-sm-6 col-md-6 col-lg-6 justify-content-center p-2 my-2"
+                            className="col-sm-3 col-md-3 col-lg-3 justify-content-center p-2 my-2"
                         >
                             <PokemonCard data={data} />
                         </div>

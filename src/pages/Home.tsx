@@ -1,0 +1,24 @@
+
+import ListaPokemon from './ListaPokemon';
+import Pagination from '../components/Pagination';
+import PokemonImagen from '../components/PokemonImagen';
+
+function Home() {
+
+
+    return (
+        <div className='Container'>
+            <div className="row align-items-center">
+
+                <div className="col-1  bg-succes "><PokemonImagen></PokemonImagen></div>
+                <div className="col-10 "><ListaPokemon></ListaPokemon></div>
+            </div>
+            {/*   <div className="row">
+                <Pagination></Pagination>
+
+            </div> */}
+        </div>
+    )
+}
+
+export default Home

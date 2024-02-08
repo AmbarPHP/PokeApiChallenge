@@ -1,10 +1,9 @@
 
 
 import { useEffect, useState } from "react";
-import { getPokemonDefaultImg } from "../helpers/index";
-import { getPokemon } from "../services/pokemons";
+import { padNumber } from "../helpers/index"
 import { IPokemon } from '../redux/slices/pokemon.interface';
-import background from "../assets/pokeball2.svg";
+import { setCurrentPokemonUrl } from "../redux/slices/pokemonImagenSlice";
 import { AppDispatch } from "../redux/store";
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
@@ -22,51 +21,54 @@ function PokemonCard({ data }: IPokemonCard) {
     const dispatch = useDispatch<AppDispatch>();
     //const [dataImagen, setDataImagen] = <any[]> useState({});
 
-    const [pokemonData, setPokemonData] = useState(null);
 
-    useEffect(() => {
-        async function fetchPokemon() {
-            try {
-                const res = await getPokemon(data.name);
-                const other = res.data;
-                setPokemonData(other);
-                console.log(pokemonData);
-                getColors();
-            } catch (error) {
-                console.log(error);
+
+    const handleClick = (event: { detail: any; } | undefined, url: string) => {
+        //console.log(event?.detail, url);
+
+        switch (event?.detail) {
+            case 1: {
+                console.log('single click');
+                dispatch(setCurrentPokemonUrl(data.url));
+                break;
+            }
+            case 2: {
+                console.log('double click', data.name);
+
+                navigate("/single-pokemon/");
+                break;
+            }
+            default: {
+                break;
             }
         }
-        fetchPokemon();
-    }, [pokemonData, data.name]);
-
-    const handleClick = (url: string) => {
-        console.log(url);
-        console.log('double click', data.name);
-        navigate("/single-pokemon/");
-
     };
+    const ListTypes = [
 
+        { type: { name: "grass" } },
+        { type: { name: "poison" } }
 
-
+    ]
+    const pokemonTypeBg = `bg-${ListTypes[0].type.name}`;
+    const pokemonTypeShadow = `shadow-${ListTypes[0].type.name}`;
 
     return (
 
 
         <article className="h-auto w-full">
-
             <button
-                onClick={() => handleClick(data.url)}
+                onClick={(event) => handleClick(event, data.url)}
                 type="button"
                 className={`  h-full
                 shadow-lg     hover:-translate-y-3
                 transition duration-300  
                 p-4 w-full  
-                rounded-lg  bg-${pokemonData?.types[0].type.name} shadow-${pokemonData?.types[0].type.name}   overflow-hidden`}
+                rounded-lg  ${pokemonTypeShadow} ${pokemonTypeBg}   overflow-hidden`}
             >
                 <div className="flex justify-between content-center relative">
                     <div className="absolute top-[-100%] right-[-60%] h-40 w-auto ">
                         <img
-                            src={background}
+                            src="/assets/pokeball2.svg"
                             alt="pokemon back"
                             className="w-[300px] h-[300px]"
                         />
@@ -78,7 +80,7 @@ function PokemonCard({ data }: IPokemonCard) {
                             {data?.name}
                         </h6>
                         <div className="flex flex-wrap gap-2 mt-2">
-                            {pokemonData?.types?.map(({ type }) => (
+                            {ListTypes?.map(({ type }) => (
                                 <span
                                     key={type.name}
                                     className={`py-0.5 px-1   rounded-md text-xs
@@ -91,12 +93,12 @@ function PokemonCard({ data }: IPokemonCard) {
                         </div>
                     </div>
 
-                    <img
-                        src={getPokemonDefaultImg(pokemonData?.sprites)}
+                    {/* <img
+                        src={getPokemonDefaultImg(pokemon.sprites)}
                         alt="pokemon back"
                         className=" relative w-[150px] h-[80px]"
                         objectFit="contain"
-                    />
+                    /> */}
                 </div>
             </button>
         </article>

@@ -1,9 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "./redux/slices/pokemon.interface";
+import { useSelector } from "react-redux"; //useDispatch,
+import { RootState } from "../redux/slices/pokemon.interface";
 import { useNavigate } from 'react-router-dom';
-import banner from "../src/assets/banner.png";
-import { Button } from "react-bootstrap";
-import PokemonCarousel from "./components/PokemonCarousel";
+import banner from "../../src/assets/banner.png";
+
 
 interface IAbilities {
     ability: {
@@ -25,9 +24,10 @@ interface IPokemonDetail {
 
 function DetailView() {
     const navigate = useNavigate();
-
+    //debugger;
+    //obtener datos del slice imagen
     const pokemonDetail = useSelector((state: RootState) => state.imagen.singlePokemonData);
-
+    //debugger;
     console.log("pokemon: ", pokemonDetail);
 
     const handleClick = () => {
@@ -40,7 +40,7 @@ function DetailView() {
 
 
         <div className="container " style={{ fontSize: "1.5rem" }} >
-            <div className="row justify-content-center">
+            {/* <div className="row justify-content-center">
                 <div className="col-lg-6">
                     <img src={banner} alt="Banner" className="img-fluid" style={{ height: "20vh", width: "100%" }} />
                     <img src={pokemonDetail.sprites?.front_default} alt="Pokemon" className="img-fluid" style={{ height: "80vh" }} />
@@ -75,7 +75,7 @@ function DetailView() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
 
     )
